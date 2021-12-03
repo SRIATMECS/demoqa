@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 public class StudentRegistrationForm {
     WebDriver driver;
     @Test
-    void validateRegistrationForm() throws InterruptedException {
+    void validateRegistrationForm()  {
         driver.findElement(By.id("firstName")).sendKeys("Rishika Reddy");
         driver.findElement(By.id("lastName")).sendKeys("Madi");
         driver.findElement(By.id("userEmail")).sendKeys("rishikareddymadi@gmail.com");
@@ -25,6 +25,8 @@ public class StudentRegistrationForm {
         driver.findElement(By.cssSelector(".react-datepicker__day--017")).click();
         driver.findElement(By.id("subjectsInput")).sendKeys("EVS");
         driver.findElement(By.cssSelector(".custom-checkbox:nth-child(3) > .custom-control-label")).click();
+        Actions actions=new Actions(driver);
+        actions.sendKeys(Keys.PAGE_DOWN).perform();
         driver.findElement(By.xpath("//*[@id=\"state\"]/div/div[1]")).click();
         driver.findElement(By.id("react-select-3-option-2")).click();
         driver.findElement(By.id("submit")).click();
@@ -35,6 +37,7 @@ public class StudentRegistrationForm {
         driver=new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://demoqa.com/automation-practice-form");
+        driver.findElement(By.xpath("//*[@id=\"close-fixedban\"]/img")).click();
     }
     @AfterTest
     void closeBrowser()  {
